@@ -26,6 +26,13 @@ class CartsControllerTest < ActionDispatch::IntegrationTest
   test "should show cart" do
     get cart_url(@cart)
     assert_response :success
+    assert_select 'h2', 'Your Cart'
+    assert_select 'table' do
+      assert_select 'tfoot' do
+        assert_select 'th', 'Total:'
+        assert_select 'td', "$#{@cart.total_price}"
+      end
+    end
   end
 
   test "should get edit" do
