@@ -10,7 +10,11 @@ class CartsController < ApplicationController
   end
 
   # GET /carts/1 or /carts/1.json
-  def show; end
+  def show
+    return if params[:id] == session[:cart_id].to_s
+
+    invalid_cart
+  end
 
   # GET /carts/new
   def new
