@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CombineItemsInCart < ActiveRecord::Migration[7.1]
   def up
     # merge line items with matching product_ids in each cart
