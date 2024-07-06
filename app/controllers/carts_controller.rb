@@ -60,6 +60,13 @@ class CartsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to store_index_url, notice: 'You cart is currently empty' }
       format.json { head :no_content }
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          :cart,
+          partial: 'layouts/cart',
+          locals: { cart: nil }
+        )
+      end
     end
   end
 
