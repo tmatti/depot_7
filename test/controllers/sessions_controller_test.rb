@@ -10,14 +10,14 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should login' do
     tim = users(:two)
-    post login_url params: {name: tim.name, password: 'secret'}
+    post login_url params: { name: tim.name, password: 'secret' }
     assert_redirected_to admin_url
     assert_equal tim.id, session[:user_id]
   end
 
   test 'should fail login' do
     tim = users(:two)
-    post login_url params: {name: tim.name, password: 'wrong'}
+    post login_url params: { name: tim.name, password: 'wrong' }
     assert_redirected_to login_url
   end
 
